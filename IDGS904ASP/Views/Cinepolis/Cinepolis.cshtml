@@ -1,0 +1,59 @@
+﻿@model List<IDGS904ASP.Models.Cinepolis>
+
+
+@{
+
+
+    var total = "";
+
+    if (Model.Count > 0)
+    {
+        if (Model.Last().Total == -1)
+        {
+            total = "No puede comprar más de 7 boletos por persoa";
+        }
+        else
+        {
+            total = "$ " + Model.Last().Total;
+        }
+    }
+}
+
+
+<div style="background-color:#0047ba; color:white; padding:30px; min-height:100vh;">
+    <h1 style="text-align:center;">Cinepolis</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset style="padding:20px; border:2px solid white;">
+                    <legend>Entradas</legend>
+                    <form action="/Cinepolis/Cinepolis" method="post">
+                        <label>Nombre:</label>
+                        <input type="text" name="Nombre" class="form-control" />
+                        <br />
+                        <label>Cantidad Compradores:</label>
+                        <input type="text" name="Compradores" class="form-control" />
+
+                        <br />
+
+                        <label>Tarjeta Cineco:</label>
+                        <input type="radio" name="Cineco" value="true" /> Sí
+                        <input type="radio" name="Cineco" value="false" /> No
+                        <br /><br />
+                        <label>Cantidad de Boletos:</label>
+                        <input type="text" name="Boletos" class="form-control" />
+                        <br />
+                        <input type="submit" value="Procesar" class="btn btn-light" />
+                    </form>
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset style="padding:20px; border:2px solid white;">
+                    <legend>Salidas</legend>
+                    <h2>Valor a pagar:</h2>
+                    <h1>@total</h1>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
